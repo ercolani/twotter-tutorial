@@ -28,7 +28,7 @@ export default{
         return{
             newTwootContent: '',
             selectedTwootType: 'instant',
-            twootType: [
+            twootTypes: [
                 {value: 'draft', name: 'Draft'},
                 {value: 'instant', name: 'Instant Twoot'}
             ]
