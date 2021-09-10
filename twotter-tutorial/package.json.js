@@ -14,7 +14,6 @@
     "express": "^4.17.1",
     "express-sslify": "^1.2.0",
     "node-sass": "^6.0.1",
-    "sass-loader": "^10.1.1",
     "serve-static": "^1.14.1",
     "vue": "^3.0.0",
     "vue-router": "^4.0.0-0",
