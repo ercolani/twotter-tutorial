@@ -24,7 +24,7 @@
 </template>
 
 <script>
-import TwootItem from './TwootItem.vue'
+import TwootItem from './Twootitem.vue'
 import CreateTwootPanel from "./CreateTwootPanel.vue";
 
 export default {
@@ -42,7 +42,8 @@ export default {
         isAdmin: true,
         twoots:[
             {id: 1, content: 'Twotter is Amazin!'},
-            {id: 2, content: "Dont forget to subscribe!"}
+            {id: 2, content: "Dont forget to subscribe!"},
+            {id: 3, content: "Dont forget to subscribe!"}
           ]
         }
       }
