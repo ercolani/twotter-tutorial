@@ -2,21 +2,21 @@
   <div class="user-profile">
     <div class="user-profile__sidebar">
       <div class="user-profile__user-panel">
-        <h1 class="user-profile__username">@{{ user.username}}</h1>
-        <div class="user-profile__admin-badge" v-if="user.isAdmin">
+        <h1 class="user-profile__username">@{{ state.user.username}}</h1>
+        <div class="user-profile__admin-badge" v-if="state.user.isAdmin">
           Admin
         </div>
         <div class="user-profile__follower-count">
-          <strong>Followers: </strong> {{ followers}}
+          <strong>Followers: </strong> {{ state.followers}}
         </div>
       </div>
-      <CreateTwootPanel @add-twoot="addtwoot"/>
+      <CreateTwootPanel @add-twoot="addTwoot"/>
     </div>
     <div class="user-profile__twoots-wrapper">
       <TwootItem 
-        v-for="twoot in user.twoots" 
+        v-for="twoot in state.user.twoots" 
         :key="twoot.id" 
-        :username="user.username"  
+        :username="state.user.username"  
         :twoot="twoot" 
       />
     </div>
@@ -24,37 +24,43 @@
 </template>
 
 <script>
+import {reactive} from 'vue';
 import TwootItem from './Twootitem.vue'
 import CreateTwootPanel from "./CreateTwootPanel.vue";
 
 export default {
-  components: { CreateTwootPanel, TwootItem },
   name: 'UserProfile',
-  data(){
-    return{
-      followers: 0,
-      user:{
-        id: 1,
-        username: '_MitchellRomney',
-        firstName: 'Mitchell',
-        lastName: 'Romney',
-        email: 'mitchellromney@theearthissquare.com',
-        isAdmin: true,
-        twoots:[
-            {id: 1, content: 'Twotter is Amazin!'},
-            {id: 2, content: "Dont forget to subscribe!"},
-            {id: 3, content: "Dont forget to subscribe!"}
-          ]
-        }
-      }
-    },
+  components: { CreateTwootPanel, TwootItem },
+  setup(){
+      const state = reactive({
+        followers: 0,
+        user:{
+          id: 1,
+          username: '_MitchellRomney',
+          firstName: 'Mitchell',
+          lastName: 'Romney',
+          email: 'mitchellromney@theearthissquare.com',
+          isAdmin: true,
+          twoots:[
+              {id: 1, content: 'Twotter is Amazin!'},
+              {id: 2, content: "Dont forget to subscribe!"},
+              {id: 3, content: "Dont forget to subscribe!"}
+            ]
+          }
+        })
 
-  methods: {
-    addTwoot(twoot){
-      this.user.twoots.unshift({id: this.user.twoots.length + 1, content: twoot});
+    function addTwoot(twoot){
+      console.log("hello");
+        state.user.twoots.unshift({id: state.user.twoots.length + 1, content: twoot});
+    }
+
+    return{
+      state,
+      addTwoot
     }
   }
 };
+
 </script>
 
 <style lang="scss" scoped>
